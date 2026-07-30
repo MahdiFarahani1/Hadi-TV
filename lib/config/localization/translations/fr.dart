@@ -1,0 +1,158 @@
+const Map<String, String> frTranslations = {
+  // Navigation & Shell & Drawer
+  'home': 'Accueil',
+  'videos': 'Vidéos',
+  'live_tv': 'TV en direct',
+  'articles': 'Articles',
+  'settings': 'Paramètres',
+  'search': 'Rechercher',
+  'bookmarks': 'Favoris',
+  'version': 'Version',
+  'hadi_tv_network': 'Réseau Hadi TV',
+  'main_navigation': 'Navigation principale',
+  'my_content': 'Mon contenu',
+  'preferences': 'Préférences',
+  'official_network': 'Réseau officiel',
+  'storage': 'Stockage',
+  'social_links': 'Liens sociaux',
+
+  // Onboarding
+  'skip': 'Ignorer',
+  'next': 'Suivant',
+  'get_started': 'Commencer',
+  'onboarding_badge_1': 'En direct',
+  'onboarding_title_1': 'Télévision islamique en direct 24h/24 et 7j/7',
+  'onboarding_sub_1':
+      'Regardez des chaînes de télévision islamiques en direct et en haute qualité depuis le monde entier.',
+  'onboarding_badge_2': 'Archives vidéo',
+  'onboarding_title_2': 'Une riche collection de vidéos',
+  'onboarding_sub_2':
+      'Découvrez des milliers de conférences, sermons et séries vidéo inspirantes de grands érudits.',
+  'onboarding_badge_3': 'Connaissances islamiques',
+  'onboarding_title_3': 'Articles et conseils',
+  'onboarding_sub_3':
+      'Accédez à des articles islamiques enrichissants, des contenus éducatifs et des conseils spirituels.',
+
+  // Home Screen
+  'live_channels': 'Chaînes en direct',
+  'featured_videos': 'Vidéos à la une',
+  'featured_articles': 'Articles à la une',
+  'trending_now': 'Tendances',
+  'recommended_for_you': 'Recommandé pour vous',
+  'latest_articles': 'Derniers articles',
+  'see_all': 'Voir tout',
+  'no_content_found': 'Aucun contenu trouvé',
+  'no_content_subtitle': 'Aucun contenu n’est disponible pour le moment.',
+  'retry': 'Réessayer',
+
+  // Videos Screen & Card
+  'all_videos': 'Toutes les vidéos',
+  'categories': 'Catégories',
+  'speakers_scholars': 'Conférenciers et érudits',
+  'all_speakers': 'Tous les conférenciers',
+  'all_categories': 'Toutes les catégories',
+  'no_videos_found': 'Aucune vidéo trouvée',
+  'no_videos_subtitle': 'Veuillez sélectionner une autre catégorie.',
+  'show_all_videos': 'Afficher toutes les vidéos',
+  'views': 'Vues',
+  'speaker': 'Conférencier',
+
+  // Video Detail Screen
+  'save': 'Enregistrer',
+  'saved': 'Enregistré',
+  'share': 'Partager',
+  'description': 'Description',
+  'show_more': 'Voir plus',
+  'show_less': 'Voir moins',
+  'related_videos': 'Vidéos similaires',
+  'added_to_bookmarks': 'Vidéo ajoutée aux favoris',
+  'removed_from_bookmarks': 'Vidéo retirée des favoris',
+  'link_copied': 'Lien copié',
+
+  // Live TV Screen
+  'live_now': 'En direct',
+  'live_broadcasting': 'Diffusion en direct',
+  'all_tv_channels': 'Toutes les chaînes',
+  'available': 'Disponible',
+  'off_air_subtitle': 'Cette chaîne n’est pas en diffusion actuellement',
+  'switch_server': 'Changer de serveur',
+  'server': 'Serveur',
+  'select_server_quality': 'Choisissez la qualité / le serveur',
+  'off_air_status': 'Hors diffusion',
+  'now_playing': 'En cours',
+  'now': 'Maintenant',
+  'next_program': 'Suivant',
+  'on_air': 'En direct',
+  'live_badge': 'LIVE',
+  'channels_count': 'Chaînes',
+  'live_broadcasting_now': 'Diffusion en direct en cours',
+
+  // Articles Screen & Detail
+  'all_articles': 'Tous les articles',
+  'article_tag': 'Article',
+  'read_original_source': 'Lire la source originale',
+  'related_articles': 'Articles similaires',
+  'min_read': 'min de lecture',
+  'no_articles_found': 'Aucun article trouvé',
+  'no_articles_subtitle': 'Aucun article disponible dans cette catégorie.',
+  'show_all_articles': 'Afficher tous les articles',
+
+  // Search Screen & Empty State
+  'search_placeholder': 'Rechercher des vidéos et des articles...',
+  'recent_searches': 'Recherches récentes',
+  'clear_all': 'Tout effacer',
+  'start_searching': 'Commencez votre recherche...',
+  'no_results_found': 'Aucun résultat trouvé',
+  'no_results_sub': 'Essayez avec d’autres mots-clés.',
+  'search_hadi_tv': 'Rechercher sur Hadi TV',
+  'search_hadi_tv_sub': 'Saisissez un mot-clé ou le nom d’une vidéo ci-dessus.',
+  'clear_search': 'Effacer la recherche',
+
+  // Bookmarks Screen
+  'saved_items': 'Éléments enregistrés',
+  'search_bookmarks': 'Rechercher dans les favoris...',
+  'saved_videos': 'Vidéos enregistrées',
+  'saved_articles': 'Articles enregistrés',
+  'all': 'Tous',
+  'clear_bookmarks': 'Effacer tous les favoris',
+  'clear_bookmarks_confirm':
+      'Voulez-vous vraiment supprimer tous les favoris ?',
+  'cancel': 'Annuler',
+  'confirm': 'Confirmer',
+  'ok': 'OK',
+  'got_it': 'Compris',
+  'processing': 'Traitement en cours...',
+  'no_bookmarks_title': 'Aucun favori',
+  'no_bookmarks_subtitle':
+      'Les éléments que vous enregistrez apparaîtront ici.',
+  'browse_content': 'Parcourir le contenu',
+
+  // Settings Screen & Common Dialogs
+  'appearance': 'Apparence et thème',
+  'dark_mode': 'Mode sombre',
+  'light_mode': 'Mode clair',
+  'app_language': 'Langue de l’application',
+  'select_language': 'Choisir une langue',
+  'search_language': 'Rechercher une langue...',
+  'clear_cache': 'Vider le cache',
+  'clear_cache_title': 'Vider le cache ?',
+  'clear_cache_confirm':
+      'Les favoris, l’historique des recherches et les paramètres de l’application seront réinitialisés.',
+  'clear_cache_button': 'Vider',
+  'clear_cache_success': 'Cache vidé avec succès',
+  'app_details': 'À propos de l’application',
+
+  // Errors & Exceptions
+  'error_occurred': 'Une erreur est survenue !',
+  'network_error_msg':
+      'Veuillez vérifier votre connexion Internet et réessayer.',
+  'timeout_error_msg': 'Le délai de connexion est dépassé. Veuillez réessayer.',
+  'unexpected_error_msg': 'Une erreur inattendue est survenue.',
+  'server_error_msg': 'Erreur du serveur. Veuillez réessayer plus tard.',
+  'request_cancelled_msg': 'La requête a été annulée',
+  'connection_error_msg': 'Erreur lors de la connexion au serveur',
+  'error_bad_request': 'Requête invalide',
+  'error_unauthorized': 'Accès non autorisé',
+  'error_forbidden': 'Accès interdit',
+  'error_not_found': 'Contenu introuvable',
+};

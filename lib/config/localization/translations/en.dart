@@ -1,0 +1,158 @@
+/// English (en) translations map for Hadi TV.
+const Map<String, String> enTranslations = {
+  // Navigation & Shell & Drawer
+  'home': 'Home',
+  'videos': 'Videos',
+  'live_tv': 'Live TV',
+  'articles': 'Articles',
+  'settings': 'Settings',
+  'search': 'Search',
+  'bookmarks': 'Bookmarks',
+  'version': 'Version',
+  'hadi_tv_network': 'Hadi TV Network',
+  'main_navigation': 'MAIN NAVIGATION',
+  'my_content': 'MY CONTENT',
+  'preferences': 'PREFERENCES',
+  'official_network': 'Official Network',
+  'storage': 'STORAGE',
+  'social_links': 'SOCIAL & LINKS',
+
+  // Onboarding
+  'skip': 'Skip',
+  'next': 'Next',
+  'get_started': 'Get Started',
+  'onboarding_badge_1': 'LIVE BROADCASTS',
+  'onboarding_title_1': '24/7 Live Islamic TV',
+  'onboarding_sub_1':
+      'Stream high-definition Islamic TV channels and special live broadcasts anytime from around the globe.',
+  'onboarding_badge_2': 'VIDEO ARCHIVE',
+  'onboarding_title_2': 'Rich Video Programs',
+  'onboarding_sub_2':
+      'Explore thousands of inspiring lectures, speeches, and video series by prominent scholars.',
+  'onboarding_badge_3': 'ISLAMIC KNOWLEDGE',
+  'onboarding_title_3': 'Articles & Guidance',
+  'onboarding_sub_3':
+      'Read enriching Islamic articles, educational content, and spiritual guidance right at your fingertips.',
+
+  // Home Screen
+  'live_channels': 'Live Channels',
+  'featured_videos': 'Featured Videos',
+  'featured_articles': 'Featured Articles',
+  'trending_now': 'Trending Now',
+  'recommended_for_you': 'Recommended for You',
+  'latest_articles': 'Latest Articles',
+  'see_all': 'See All',
+  'no_content_found': 'No content found',
+  'no_content_subtitle': 'There is currently no content available.',
+  'retry': 'Retry',
+
+  // Videos Screen & Card
+  'all_videos': 'All Videos',
+  'categories': 'Categories',
+  'speakers_scholars': 'Speakers & Scholars',
+  'all_speakers': 'All Speakers',
+  'all_categories': 'All Categories',
+  'no_videos_found': 'No videos found',
+  'no_videos_subtitle': 'Try selecting another category or speaker.',
+  'show_all_videos': 'Show All Videos',
+  'views': 'views',
+  'speaker': 'Speaker',
+
+  // Video Detail Screen
+  'save': 'Save',
+  'saved': 'Saved',
+  'share': 'Share',
+  'description': 'Description',
+  'show_more': 'Show More',
+  'show_less': 'Show Less',
+  'related_videos': 'Related Videos',
+  'added_to_bookmarks': 'Video added to bookmarks',
+  'removed_from_bookmarks': 'Video removed from bookmarks',
+  'link_copied': 'Link copied to clipboard',
+
+  // Live TV Screen
+  'live_now': 'LIVE NOW',
+  'live_broadcasting': 'Live Broadcasting Channels',
+  'all_tv_channels': 'All Channels',
+  'available': 'Available',
+  'off_air_subtitle': 'This channel is currently off-air',
+  'switch_server': 'Switch Server',
+  'server': 'Server',
+  'select_server_quality': 'Select Quality / Stream Server',
+  'off_air_status': 'Off-air – No broadcast',
+  'now_playing': 'Now Playing',
+  'now': 'Now',
+  'next_program': 'Next',
+  'on_air': 'ON AIR',
+  'live_badge': 'LIVE',
+  'channels_count': 'channels',
+  'live_broadcasting_now': 'Live Broadcasting',
+
+  // Articles Screen & Detail
+  'all_articles': 'All Articles',
+  'article_tag': 'ARTICLE',
+  'read_original_source': 'Read Original Source',
+  'related_articles': 'Related Articles',
+  'min_read': 'min read',
+  'no_articles_found': 'No articles found',
+  'no_articles_subtitle': 'No articles registered in this category.',
+  'show_all_articles': 'Show All Articles',
+
+  // Search Screen & Empty State
+  'search_placeholder': 'Search videos, articles...',
+  'recent_searches': 'Recent Searches',
+  'clear_all': 'Clear All',
+  'start_searching': 'Start searching…',
+  'no_results_found': 'No results found',
+  'no_results_sub': 'Try searching with different keywords.',
+  'search_hadi_tv': 'Search Hadi TV',
+  'search_hadi_tv_sub':
+      'Enter keywords, video titles, or speaker names above.',
+  'clear_search': 'Clear Search',
+
+  // Bookmarks Screen
+  'saved_items': 'Saved Items',
+  'search_bookmarks': 'Search saved items...',
+  'saved_videos': 'Saved Videos',
+  'saved_articles': 'Saved Articles',
+  'all': 'All',
+  'clear_bookmarks': 'Clear Bookmarks',
+  'clear_bookmarks_confirm':
+      'Are you sure you want to clear all bookmarks?',
+  'cancel': 'Cancel',
+  'confirm': 'Confirm',
+  'ok': 'OK',
+  'got_it': 'Got it',
+  'processing': 'Processing...',
+  'no_bookmarks_title': 'No saved items found',
+  'no_bookmarks_subtitle':
+      'Videos and articles you bookmark will appear here.',
+  'browse_content': 'Browse Content',
+
+  // Settings Screen & Common Dialogs
+  'appearance': 'Appearance & Theme',
+  'dark_mode': 'Dark Mode',
+  'light_mode': 'Light Mode',
+  'app_language': 'App Language',
+  'select_language': 'Select Language',
+  'search_language': 'Search language...',
+  'clear_cache': 'Clear Cache',
+  'clear_cache_title': 'Clear Cache?',
+  'clear_cache_confirm':
+      'Bookmarks, search history, and app settings will be reset. This action cannot be undone.',
+  'clear_cache_button': 'Clear',
+  'clear_cache_success': 'Cache cleared successfully',
+  'app_details': 'App Details',
+  // Errors & Exceptions
+  'error_occurred': 'Something went wrong!',
+  'network_error_msg': 'Please check your internet connection and try again.',
+  'timeout_error_msg': 'Connection timed out, please try again.',
+  'unexpected_error_msg': 'An unexpected error occurred.',
+  'server_error_msg': 'Server error, please try again later.',
+  'request_cancelled_msg': 'Request was cancelled.',
+  'connection_error_msg': 'Error connecting to server.',
+  'error_bad_request': 'Bad request.',
+  'error_unauthorized': 'Unauthorized access.',
+  'error_forbidden': 'Access forbidden.',
+  'error_not_found': 'Content not found.',
+};
