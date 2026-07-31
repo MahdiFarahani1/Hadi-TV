@@ -70,7 +70,7 @@
 
 ## Dependency Injection
 
-* GetIt
+* get_it
 
 ## Model & Code Generation
 
