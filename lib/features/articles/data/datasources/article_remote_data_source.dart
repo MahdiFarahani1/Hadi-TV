@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:haditv/core/error/api_call_handler.dart';
 import 'package:haditv/core/network/api_client.dart';
 import 'package:haditv/core/network/api_endpoints.dart';
@@ -23,7 +22,6 @@ class ArticleRemoteDataSource {
   Future<List<ArticleModel>> getArticles() async {
     return safeApiCall<List<ArticleModel>>(() async {
       final response = await apiClient.dio.get(ApiEndpoints.article);
-      debugPrint(response.data.toString());
 
       return (response.data['articles'] as List)
           .map((e) => ArticleModel.fromJson(e))
