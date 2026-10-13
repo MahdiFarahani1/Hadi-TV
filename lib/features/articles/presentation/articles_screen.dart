@@ -152,9 +152,8 @@ class ArticlesView extends StatelessWidget {
                     title: context.tr('no_articles_found'),
                     subtitle: context.tr('no_articles_subtitle'),
                     actionLabel: context.tr('show_all_articles'),
-                    onAction: () => context
-                        .read<ArticleListCubit>()
-                        .changeCategory(0),
+                    onAction: () =>
+                        context.read<ArticleListCubit>().changeCategory(0),
                     iconColor: AppTheme.accentBlue,
                   ),
                 )

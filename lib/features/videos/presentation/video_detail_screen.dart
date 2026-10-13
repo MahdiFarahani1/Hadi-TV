@@ -24,9 +24,15 @@ import 'widgets/video_detail_skeleton.dart';
 import 'widgets/video_player_widget.dart';
 
 class VideoDetailScreen extends StatelessWidget {
+  final bool showPlayer;
+
   final Video video;
 
-  const VideoDetailScreen({super.key, required this.video});
+  const VideoDetailScreen({
+    super.key,
+    required this.video,
+    this.showPlayer = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +40,7 @@ class VideoDetailScreen extends StatelessWidget {
       create: (_) =>
           VideoDetailCubit(getVideosUseCase: getIt<GetVideosUseCase>())
             ..loadVideo(video),
-      child: const Scaffold(body: VideoDetailView()),
+      child: Scaffold(body: VideoDetailView(showPlayer: showPlayer)),
     );
   }
 }
@@ -42,7 +48,8 @@ class VideoDetailScreen extends StatelessWidget {
 // ─────────────────────────────────────────────────────────────────────────────
 
 class VideoDetailView extends StatelessWidget {
-  const VideoDetailView({super.key});
+  final bool showPlayer;
+  const VideoDetailView({super.key, this.showPlayer = true});
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +67,7 @@ class VideoDetailView extends StatelessWidget {
             ),
           );
         } else if (state is VideoDetailLoaded) {
-          return _DetailContent(state: state);
+          return _DetailContent(state: state, showPlayer: showPlayer);
         }
         return const SizedBox();
       },
@@ -72,7 +79,8 @@ class VideoDetailView extends StatelessWidget {
 
 class _DetailContent extends StatelessWidget {
   final VideoDetailLoaded state;
-  const _DetailContent({required this.state});
+  final bool showPlayer;
+  const _DetailContent({required this.state, required this.showPlayer});
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +101,9 @@ class _DetailContent extends StatelessWidget {
             // ── Player with Glassmorphic Floating Back Button ────────
             Stack(
               children: [
-                VideoPlayerWidget(videoUrl: video.videoUrl),
+                showPlayer
+                    ? VideoPlayerWidget(videoUrl: video.videoUrl)
+                    : const SizedBox.shrink(),
                 Positioned(
                   top: 12,
                   left: 12,

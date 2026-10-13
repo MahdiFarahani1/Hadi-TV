@@ -1,4 +1,6 @@
-class Speaker {
+import 'package:equatable/equatable.dart';
+
+class Speaker extends Equatable {
   final int id;
   final String? lang;
   final String name;
@@ -8,7 +10,7 @@ class Speaker {
   final int? idShow;
   final String? photoUrl;
 
-  Speaker({
+  const Speaker({
     required this.id,
     this.lang,
     required this.name,
@@ -18,4 +20,16 @@ class Speaker {
     this.idShow,
     required this.photoUrl,
   });
+
+  @override
+  List<Object?> get props => [
+    id,
+    lang,
+    name,
+    email,
+    description,
+    slug,
+    idShow,
+    photoUrl,
+  ];
 }

@@ -44,7 +44,7 @@ class ArticleListCubit extends Cubit<ArticleListState> {
       final filtered = categoryId == 0
           ? current.allArticles
           : current.allArticles
-                .where((a) => a.categoryId == categoryId)
+                .where((article) => article.categoryId == categoryId)
                 .toList();
 
       emit(

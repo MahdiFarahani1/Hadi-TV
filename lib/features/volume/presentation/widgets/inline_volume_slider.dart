@@ -46,8 +46,8 @@ class ModernInlineVolumeSlider extends StatelessWidget {
               color: isMuted
                   ? AppTheme.errorColor.withValues(alpha: 0.5)
                   : (isDark
-                      ? Colors.white.withValues(alpha: 0.18)
-                      : Colors.white.withValues(alpha: 0.9)),
+                        ? Colors.white.withValues(alpha: 0.18)
+                        : Colors.white.withValues(alpha: 0.9)),
               width: 1,
             ),
             boxShadow: [
@@ -94,7 +94,9 @@ class ModernInlineVolumeSlider extends StatelessWidget {
                       elevation: 2,
                     ),
                     overlayColor: AppTheme.accentBlue.withValues(alpha: 0.15),
-                    overlayShape: const RoundSliderOverlayShape(overlayRadius: 10),
+                    overlayShape: const RoundSliderOverlayShape(
+                      overlayRadius: 10,
+                    ),
                   ),
                   child: Slider(
                     value: volume,

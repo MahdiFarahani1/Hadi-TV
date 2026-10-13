@@ -24,13 +24,21 @@ class ArticleRepositoryImpl implements ArticleRepository {
 
   @override
   Future<Either<Failure, List<Article>>> getArticles() async {
-    final articleModel = await remoteDataSource.getArticles();
-    return Right(articleModel.map((e) => e.toEntity()).toList());
+    try {
+      final articleModel = await remoteDataSource.getArticles();
+      return Right(articleModel.map((e) => e.toEntity()).toList());
+    } on Failure catch (e) {
+      return Left(e);
+    }
   }
 
   @override
   Future<Either<Failure, ArticleDetail>> getArticleContent(int id) async {
-    final content = await remoteDataSource.getArticleContent(id);
-    return Right(content.toEntity());
+    try {
+      final content = await remoteDataSource.getArticleContent(id);
+      return Right(content.toEntity());
+    } on Failure catch (e) {
+      return Left(e);
+    }
   }
 }

@@ -14,6 +14,14 @@ analyzer:
     # Suppress false-positive from using @JsonKey inside freezed factory
     # constructors. This is the standard freezed pattern and is correct.
     invalid_annotation_target: ignore
+  exclude:
+    - build/**
+    - android/**
+    - ios/**
+    - web/**
+    - windows/**
+    - macos/**
+    - linux/**
 
 linter:
   # The lint rules applied to this project can be customized in the

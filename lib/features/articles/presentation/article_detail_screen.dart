@@ -90,7 +90,7 @@ class _ArticleContentState extends State<_ArticleContent> {
   void initState() {
     super.initState();
     readTime = DateFormatter.calculateReadTime(widget.article.content);
-    isBookmarked = getIt<BookmarkCubit>().isArticleBookmarked(
+    isBookmarked = context.read<BookmarkCubit>().isArticleBookmarked(
       widget.article.id,
     );
   }
