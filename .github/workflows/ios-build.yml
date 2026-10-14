@@ -194,7 +194,7 @@ jobs:
 
           echo "::group::Upload to App Store Connect (verbose diagnostics)"
           set +e
-          xcrun altool --upload-app \
+          API_PRIVATE_KEYS_DIR="$KEY_DIR" xcrun altool --upload-app \
             --type ios \
             --file "$IPA_PATH" \
             --apiKey "$APP_STORE_CONNECT_API_KEY_ID" \
