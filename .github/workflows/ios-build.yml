@@ -139,11 +139,83 @@ jobs:
           APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
         shell: bash
         run: |
-          set -euo pipefail
-          mkdir -p "$HOME/.appstoreconnect/private_keys"
-          printf '%s' "$APP_STORE_CONNECT_API_KEY_BASE64" | base64 -D > "$HOME/.appstoreconnect/private_keys/AuthKey_${APP_STORE_CONNECT_API_KEY_ID}.p8"
+          set -Eeuo pipefail
+
+          echo "::group::App Store Connect credential preflight"
+          # Never print secret values; only report presence and structural checks.
+          for name in APP_STORE_CONNECT_API_KEY_BASE64 APP_STORE_CONNECT_API_KEY_ID APP_STORE_CONNECT_ISSUER_ID; do
+            if [ -z "${!name:-}" ]; then
+              echo "::error title=Missing GitHub secret::$name is empty or unavailable. Check Settings > Secrets and variables > Actions."
+              exit 1
+            fi
+            echo "$name is present."
+          done
+
+          if ! [[ "$APP_STORE_CONNECT_API_KEY_ID" =~ ^[A-Z0-9]{10}$ ]]; then
+            echo "::error title=Invalid API Key ID::APP_STORE_CONNECT_API_KEY_ID should be the 10-character Key ID from App Store Connect, not the Issuer ID or an email."
+            exit 1
+          fi
+
+          if ! [[ "$APP_STORE_CONNECT_ISSUER_ID" =~ ^[0-9a-fA-F]{8}-([0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$ ]]; then
+            echo "::error title=Invalid Issuer ID::APP_STORE_CONNECT_ISSUER_ID must be the UUID Issuer ID from App Store Connect > Users and Access > Integrations > App Store Connect API."
+            exit 1
+          fi
+
+          KEY_DIR="$HOME/.appstoreconnect/private_keys"
+          KEY_PATH="$KEY_DIR/AuthKey_${APP_STORE_CONNECT_API_KEY_ID}.p8"
+          mkdir -p "$KEY_DIR"
+
+          if ! printf '%s' "$APP_STORE_CONNECT_API_KEY_BASE64" | base64 -D > "$KEY_PATH" 2>"$RUNNER_TEMP/base64-error.log"; then
+            echo "::error title=Invalid private-key Base64::APP_STORE_CONNECT_API_KEY_BASE64 could not be decoded. Recreate it from the original .p8 file."
+            cat "$RUNNER_TEMP/base64-error.log"
+            exit 1
+          fi
+
+          if ! grep -q -- 'BEGIN PRIVATE KEY' "$KEY_PATH" || ! grep -q -- 'END PRIVATE KEY' "$KEY_PATH"; then
+            echo "::error title=Invalid .p8 file::Decoded key does not look like an Apple AuthKey private key. Ensure this Base64 secret belongs to Key ID $APP_STORE_CONNECT_API_KEY_ID."
+            exit 1
+          fi
+
+          if ! openssl pkey -in "$KEY_PATH" -noout >/dev/null 2>"$RUNNER_TEMP/pkey-error.log"; then
+            echo "::error title=Unreadable private key::OpenSSL could not parse the decoded .p8 file; the secret may be truncated or from another key."
+            cat "$RUNNER_TEMP/pkey-error.log"
+            exit 1
+          fi
+
+          IPA_PATH="$(find "$GITHUB_WORKSPACE/build/ios/ipa" -maxdepth 1 -name '*.ipa' -print -quit)"
+          if [ -z "$IPA_PATH" ]; then
+            echo "::error title=IPA missing::No .ipa file was found in build/ios/ipa."
+            exit 1
+          fi
+
+          echo "Private-key format is valid; IPA file exists."
+          echo "These checks validate format only, not Apple's recognition of the key or its permissions."
+          echo "::endgroup::"
+
+          echo "::group::Upload to App Store Connect (verbose diagnostics)"
+          set +e
           xcrun altool --upload-app \
             --type ios \
-            --file "$(find "$GITHUB_WORKSPACE/build/ios/ipa" -maxdepth 1 -name '*.ipa' -print -quit)" \
+            --file "$IPA_PATH" \
             --apiKey "$APP_STORE_CONNECT_API_KEY_ID" \
-            --apiIssuer "$APP_STORE_CONNECT_ISSUER_ID"
+            --apiIssuer "$APP_STORE_CONNECT_ISSUER_ID" \
+            --verbose --output-format json 2>&1 | tee "$RUNNER_TEMP/altool-upload.log"
+          ALTOOL_STATUS=${PIPESTATUS[0]}
+          set -e
+          echo "::endgroup::"
+
+          if [ "$ALTOOL_STATUS" -ne 0 ]; then
+            echo "::error title=App Store Connect upload failed::altool exited with code $ALTOOL_STATUS. Review the verbose output above."
+            if grep -Eqi 'authentication|unauthorized|not authorized|invalid.*(key|issuer)|-26000|-1011|JWT' "$RUNNER_TEMP/altool-upload.log"; then
+              echo "::error title=Authentication diagnosis::Apple rejected API authentication. Confirm Key ID, Issuer ID, and .p8 are from the same active API key; confirm its upload role and whether it is a Team or Individual key."
+            elif grep -Eqi 'bundle identifier|bundle id|provisioning|signing|invalid.*bundle' "$RUNNER_TEMP/altool-upload.log"; then
+              echo "::error title=App/signing diagnosis::Check bundle ID com.dijlah.haditv, its App Store Connect app record, and the distribution provisioning profile."
+            elif grep -Eqi 'version|build number|duplicate' "$RUNNER_TEMP/altool-upload.log"; then
+              echo "::error title=Version/build diagnosis::Apple may be rejecting a duplicate or invalid version/build number. Increment the iOS build number and retry."
+            else
+              echo "::error title=Unclassified upload failure::Read the detailed altool output above; the failure did not match common diagnostic patterns."
+            fi
+            exit "$ALTOOL_STATUS"
+          fi
+
+          echo "altool reported upload success. Apple may still need time to process the build."
